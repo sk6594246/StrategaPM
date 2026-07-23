@@ -18,6 +18,11 @@ const Auth = {
     let hashedPassword;
     try {
       hashedPassword = await hashPassword(password);
+
+      // Log the hashed password to the console to check its value
+  console.log("Generated Hashed Password:", hashedPassword);
+
+      
     } catch (err) {
       console.error("Hashing failed:", err);
       return { success: false, message: "Client-side encryption error." };
