@@ -1,0 +1,43 @@
+name: Deploy Task Manager SPA
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Inject secrets into config.js
+        env:
+          GAS_WEB_APP_URL: ${{ secrets.GAS_WEB_APP_URL }}
+          PIN_HASH_SALT: ${{ secrets.PIN_HASH_SALT }}
+        run: |
+          sed \
+            -e "s|__GAS_WEB_APP_URL__|${GAS_WEB_APP_URL}|g" \
+            -e "s|__PIN_HASH_SALT__|${PIN_HASH_SALT}|g" \
+            frontend/js/config.template.js > frontend/js/config.js
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

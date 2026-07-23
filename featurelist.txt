@@ -1,0 +1,28 @@
+feature list:# 1. Login with User ID + Password fields; password encrypted client-side via HMAC-SHA256 using a shared secret (GitHub Secret, injected at build time) before transmission; POSTed to GAS backend for comparison against encrypted value in Users sheet; response returns only success/failure confirmation (no user data in login response); on success, {userID, loginSuccess:true} stored in sessionStorage as the session flag
+feature list:# 2. Post-Login Fresh Fetch from Google Sheet — triggered immediately after login success, AND on every app load/refresh if a valid sessionStorage login flag is present
+feature list:# 3. Task-Level Edit Locking (Concurrency Control)
+feature list:# 4. Material Glass UI Design System
+feature list:# 5. Multi-view SPA Router (Dashboard, Kanban, Gantt, Team, Analytics, Manage, Config)
+feature list:# 6. Dashboard with Stats, Velocity Chart, Activity Feed, Workload Heatmap
+feature list:# 7. Kanban Board with Drag-and-Drop, Status Cycling, Priority Filters
+feature list:# 8. Gantt Chart with Dual Baselines, Today Marker, Gridlines, Print Styles
+feature list:# 9. Team Directory with RBAC Scoping
+feature list:# 10. Analytics (Status, Bottleneck, Workload, Time-in-State Charts)
+feature list:# 11. Manage Section (Statuses, Departments, Projects, Priorities, Automation Rules)
+feature list:# 12. Task Modal with Comments and Audit Trail
+feature list:# 13. User Modal with Multi-Dept/Project Assignment
+feature list:# 14. Automation Engine (Boolean + TODAY±N Parsing)
+feature list:# 15. RBAC (Admin/Manager/User Roles)
+feature list:# 16. Data Export/Import/Reset
+feature list:# 17. Mobile Responsive Design
+feature list:# 18. Favicon Upload Support
+feature list:# 19. GitHub Secrets Support for Web App URL
+feature list:# 20. Google Apps Script Backend (code.gs) with Schema Initialization
+feature list:# 21. Bidirectional Google Sheets Sync
+feature list:# 22. Add comment directly in Kanban
+feature list:# 23. All analytic views should open task list with filtered data shown in analysis (like BI reports)
+feature list:# 24. Gantt chart should be able to expand, move, collapse — modifying task planned dates in the process
+feature list:# 25. Password Encryption via GitHub Secret Salt — shared secret string stored in GitHub Secrets, injected into frontend build config via GitHub Actions; used to HMAC-SHA256 encrypt passwords both at save-time (stored encrypted in Sheet) and login-time (compared encrypted vs encrypted); single shared secret (not per-user salt) using browser's native crypto.subtle API
+
+STATUS: Feature #1, #2 (trigger only), #25 implemented below (Authorization slice).
+All other features pending — build incrementally per user instruction.
