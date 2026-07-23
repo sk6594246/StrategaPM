@@ -5,6 +5,6 @@
 // (config.js itself is gitignored and never committed with real secrets).
 
 window.APP_CONFIG = {
-  GAS_WEB_APP_URL: "__GAS_WEB_APP_URL__",
-  PIN_HASH_SALT: "__PIN_HASH_SALT__"
+  GAS_WEB_APP_URL: "GAS_WEB_APP_URL",
+  PIN_HASH_SALT: "PIN_HASH_SALT"
 };
