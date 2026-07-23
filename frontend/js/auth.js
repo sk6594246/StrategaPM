@@ -20,7 +20,7 @@ const Auth = {
       hashedPassword = await hashPassword(password);
 
       // Log the hashed password to the console to check its value
-  console.log("Generated Hashed Password:", hashedPassword);
+/*  console.log("Generated Hashed Password:", hashedPassword);*/
 
       
     } catch (err) {
